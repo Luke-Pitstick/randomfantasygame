@@ -1,4 +1,6 @@
-package gameComponents;
+package gameComponents.items;
+
+import gameComponents.baseClasses.Item;
 
 public class Weapon extends Item {
     protected final int attack;
@@ -6,8 +8,8 @@ public class Weapon extends Item {
     protected double durability;
     protected final boolean magic;
 
-    public Weapon(String name, double price, String description, String weaponType, String rarity, int attack, int defense, double durability, boolean magic, int id) {
-        super(name, price, description, "Weapon", weaponType, rarity, id);
+    public Weapon(String name, double price, String description,String weaponType,  String subType, String rarity, int attack, int defense, double durability, boolean magic) {
+        super(name, price, description, weaponType, subType, rarity);
         if (durability > 100) {
             throw new IllegalArgumentException("Durability cannot be greater than 100");
         }
@@ -45,5 +47,8 @@ public class Weapon extends Item {
 
     public double getDurability() {
         return this.durability;
+    }
+    public String toString() {
+        return String.format("Name: %s\nAttack: %s\nDefense: %d\nDurability: %.2f\nMagic: %b\nPrice: %.2f\nDescription: %s\nType: Weapon\nWeapon Type: %s\nRarity: %s\nId: %d", this.name, this.attack, this.defense, this.durability, this.magic, this.price, this.description, this.subtype, this.rarity, this.id);
     }
 }

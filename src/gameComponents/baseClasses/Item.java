@@ -1,4 +1,5 @@
-package gameComponents;
+package gameComponents.baseClasses;
+import utilities.IdGenerator;
 
 public class Item {
     protected String name;
@@ -9,14 +10,14 @@ public class Item {
     protected String rarity;
     protected int id;
 
-    public Item(String name, double price, String description, String type, String subtype, String rarity, int id) {
+    public Item(String name, double price, String description, String type, String subtype, String rarity) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.type = type;
         this.subtype = subtype;
         this.rarity = rarity;
-        this.id = id;
+        this.id = IdGenerator.generateId();
     }
 
     public final String getName() {
@@ -41,6 +42,10 @@ public class Item {
 
     public final String getRarity() {
         return this.rarity;
+    }
+
+    public String toString() {
+        return String.format("Name: %s\nPrice: %.2f\nDescription: %s\nType: %s\nSubtype: %s\nRarity: %s\nId: %d", this.name, this.price, this.description, this.type, this.subtype, this.rarity, this.id);
     }
 
 }
