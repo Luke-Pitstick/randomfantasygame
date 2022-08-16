@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ineedtorememberstuff:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ineedtorememberstuff_jar</output-path>
+    <root id="archive" name="ineedtorememberstuff.jar">
+      <element id="module-output" name="ineedtorememberstuff" />
+    </root>
+  </artifact>
+</component>
