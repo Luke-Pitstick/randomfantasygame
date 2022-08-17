@@ -13,16 +13,23 @@ public class Player {
     private String name;
     private final ArrayList<Item> inventory;
     private double health;
+
+    private double maxHealth;
+
+    private double maxMana;
+
+    private double mana;
     private Weapon weapon;
     private Armor armor;
 
-    public Player(String name, double health, Weapon weapon, Armor armor) {
+    public Player(String name, double health, double mana, Weapon weapon, Armor armor) {
         if (health > 100) {
             throw new IllegalArgumentException("Health cannot be greater than 100");
         }
         else {
             this.name = name;
             this.health = health;
+            this.mana = mana;
             this.weapon = weapon;
             this.armor = armor;
             this.inventory = new ArrayList<>();
@@ -67,14 +74,22 @@ public class Player {
     public void castSpell(Player target) {
         if (this.weapon instanceof Staff staff) {
             double modifier = 1;
+            double castModifier = staff.getModifier();
 
             if (staff.getCurrentSpell() != null) {
                 if (staff.getCurrentSpell() instanceof AttackSpell attackSpell) {
-                    if (staff.getCurrentSpell().getElement().equals(staff.getElement())) {
-                        modifier = 1.5;
+                    int manaCost = attackSpell.getManaCost();
+                    if (manaCost < this.mana) {
+                        this.mana -= manaCost;
+                        if (staff.getCurrentSpell().getElement().equals(staff.getElement())) {
+                            modifier = 1.5;
+                        }
+                        target.lowerHealth(attackSpell.getAttack() * modifier);
+                        staff.lowerDurability(1);
                     }
-                    target.lowerHealth(attackSpell.getAttack() * modifier);
-                    staff.lowerDurability(1);
+                    else {
+                        System.out.println("Not enough mana");
+                    }
                 }
                 else {
                     System.out.println("This spell is not an attack spell");
@@ -90,24 +105,29 @@ public class Player {
     }
 
     public void attack(Player target) {
-        Weapon defendingWeapon = target.getWeapon();
-        int totalDefense = getTotalDefense();
-        int totalAttack = this.weapon.getAttack() - defendingWeapon.getDefense();
+        if (!(this.weapon instanceof Staff)) {
+            Weapon defendingWeapon = target.getWeapon();
+            int totalDefense = getTotalDefense();
+            int totalAttack = this.weapon.getAttack() - defendingWeapon.getDefense();
 
-        if (totalAttack < 0) {
-            totalAttack = 0;
+            if (totalAttack < 0) {
+                totalAttack = 0;
+            }
+
+            target.lowerHealth(totalAttack);
+            defendingWeapon.lowerDurability(1);
+            this.weapon.lowerDurability(1);
         }
-
-        target.lowerHealth(totalAttack);
-        defendingWeapon.lowerDurability(1);
-        this.weapon.lowerDurability(1);
+        else {
+            System.out.println("Currently equipped weapon is a staff");
+        }
 
     }
 
 
 
     public String toString() {
-        return String.format("Name: %s\nHealth: %f\nWeapon: %s\nArmor: %s\nInventory Size: %d", this.name, this.health, this.weapon.getName(), this.armor.getName(), inventory.size());
+        return String.format("Name: %s\nHealth: %.2f\nMana: %.2f\nWeapon: %s\nArmor: %s\nInventory Size: %d", this.name, this.health, this.mana, this.weapon.getName(), this.armor.getName(), inventory.size());
     }
 
     public void setWeapon(Weapon weapon) {
