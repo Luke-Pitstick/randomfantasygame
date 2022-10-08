@@ -14,8 +14,8 @@ public class Main {
         Weapon deathBringer = new Weapon("Death Bringer", 500, "A combination of a sword and shield marked by death.", "Sword and shield", "Shortsword and Shield", "Rare", 10, 10, 100, true);
         Staff fireBringer = new Staff("Fire Bringer", 100, "A fire staff of germanic origin", "Attack", "Common", 5, 0, 3, 100, "Fire");
 
-        Player luke = new Player("Luke", 100, 100, frost, chainmail);
-        Player max = new Player("Max", 100, 100, fireBringer, chainmail);
+        Player luke = new Player("Luke", 100, 100, frost, chainmail, 10);
+        Player max = new Player("Max", 100, 100, fireBringer, chainmail, 10);
         ArrayList<Player> players = new ArrayList<>(){
             {
                 add(luke);

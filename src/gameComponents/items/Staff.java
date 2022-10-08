@@ -1,6 +1,7 @@
 package gameComponents.items;
 import gameComponents.baseClasses.Spell;
 import gameComponents.baseClasses.Player;
+import gameComponents.types.Rarity;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ public class Staff extends Weapon{
 
     protected double modifier;
 
-    public Staff(String name, double price, String description, String subtype, String rarity, int attack, int defense, int spellSlots, float durability, String element) {
+    public Staff(String name, double price, String description, String subtype, Rarity rarity, int attack, int defense, int spellSlots, float durability, String element) {
         super(name, price, description, "Staff", subtype, rarity, attack, defense, durability, false);
         if (spellSlots > 6) {
             throw new IllegalArgumentException("Spell slots cannot be more than 6");

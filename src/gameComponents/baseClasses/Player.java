@@ -4,14 +4,15 @@ import gameComponents.items.Armor;
 import gameComponents.items.Staff;
 import gameComponents.items.Weapon;
 import gameComponents.magic.AttackSpell;
+import gameComponents.types.Rarity;
 
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 
 public class Player {
     private String name;
-    private final ArrayList<Item> inventory;
+    private final Inventory inventory;
     private double health;
 
     private double maxHealth;
@@ -22,7 +23,7 @@ public class Player {
     private Weapon weapon;
     private Armor armor;
 
-    public Player(String name, double health, double mana, Weapon weapon, Armor armor) {
+    public Player(String name, double health, double mana, Weapon weapon, Armor armor, int inventorySize) {
         if (health > 100) {
             throw new IllegalArgumentException("Health cannot be greater than 100");
         }
@@ -32,7 +33,23 @@ public class Player {
             this.mana = mana;
             this.weapon = weapon;
             this.armor = armor;
-            this.inventory = new ArrayList<>();
+            this.inventory = new Inventory(10);
+            this.inventory.add(weapon);
+            this.inventory.add(armor);
+        }
+    }
+
+    public Player(String name, double health, double mana, int inventorySize) {
+        if (health > 100) {
+            throw new IllegalArgumentException("Health cannot be greater than 100");
+        }
+        else {
+            this.name = name;
+            this.health = health;
+            this.mana = mana;
+            this.weapon = new Weapon("fists", 0, "unarmed fists", "unarmed", Rarity.COMMON, 1, 1, 100);
+            this.armor = new Armor();
+            this.inventory = new Inventory(10);
             this.inventory.add(weapon);
             this.inventory.add(armor);
         }
@@ -84,7 +101,7 @@ public class Player {
                         if (staff.getCurrentSpell().getElement().equals(staff.getElement())) {
                             modifier = 1.5;
                         }
-                        target.lowerHealth(attackSpell.getAttack() * modifier);
+                        target.lowerHealth(attackSpell.getAttack() * modifier * castModifier);
                         staff.lowerDurability(1);
                     }
                     else {
@@ -124,10 +141,9 @@ public class Player {
 
     }
 
-
-
     public String toString() {
-        return String.format("Name: %s\nHealth: %.2f\nMana: %.2f\nWeapon: %s\nArmor: %s\nInventory Size: %d", this.name, this.health, this.mana, this.weapon.getName(), this.armor.getName(), inventory.size());
+        return String.format("Name: %s\nHealth: %.2f\nMana: %.2f\nWeapon: %s\nArmor: %s\nInventory Size: %d", this.name, this.health, this.mana, this.weapon.getName(),         
+                             this.armor.getName(), inventory.getSize());
     }
 
     public void setWeapon(Weapon weapon) {
@@ -138,8 +154,15 @@ public class Player {
         this.armor = armor;
     }
 
-    public void addItem(Item item) {
+    public void addItemToInventory(Item item) {
         this.inventory.add(item);
     }
 
+    public void addItemToInventory(Item[] items) {
+        this.inventory.add(items);
+    }
+    
+    public void removeItemFromInventory(int index) {
+        this.inventory.remove(index);
+    }
 }

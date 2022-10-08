@@ -1,5 +1,6 @@
 package gameComponents.baseClasses;
 import utilities.IdGenerator;
+import gameComponents.types.Rarity;
 
 public class Item {
     protected String name;
@@ -7,10 +8,10 @@ public class Item {
     protected String description;
     protected String type;
     protected String subtype;
-    protected String rarity;
+    protected Rarity rarity;
     protected int id;
 
-    public Item(String name, double price, String description, String type, String subtype, String rarity) {
+    public Item(String name, double price, String description, String type, String subtype, Rarity rarity) {
         this.name = name;
         this.price = price;
         this.description = description;

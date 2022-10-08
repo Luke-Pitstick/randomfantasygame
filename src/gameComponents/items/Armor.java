@@ -1,17 +1,25 @@
 package gameComponents.items;
 
 import gameComponents.baseClasses.Item;
+import gameComponents.types.Rarity;
 
 public class Armor extends Item {
     protected int defense;
     protected double durability;
     protected boolean magic;
 
-    public Armor(String name, int defense, double durability, boolean magic, double price, String description, String armorType, String rarity) {
+    public Armor(String name, int defense, double durability, boolean magic, double price, String description, String armorType, Rarity rarity) {
         super(name, price, description, "Armor", armorType, rarity);
         this.defense = defense;
         this.durability = durability;
         this.magic = magic;
+    }
+
+    public Armor(String name, int defense, double durability, double price, String description, String armorType, Rarity rarity) {
+        super(name, price, description, "Armor", armorType, rarity);
+        this.defense = defense;
+        this.durability = durability;
+        this.magic = false;
     }
 
     public int getDefense() {
