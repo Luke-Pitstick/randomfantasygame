@@ -48,7 +48,7 @@ public class Player {
             this.health = health;
             this.mana = mana;
             this.weapon = new Weapon("fists", 0, "unarmed fists", "unarmed", Rarity.COMMON, 1, 1, 100);
-            this.armor = new Armor();
+            this.armor = new Armor("Cloth Cloak", 1, 100, false, 5, "A simple cloth cloak", "Cloak", Rarity.COMMON);
             this.inventory = new Inventory(10);
             this.inventory.add(weapon);
             this.inventory.add(armor);

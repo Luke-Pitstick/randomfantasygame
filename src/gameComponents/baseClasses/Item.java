@@ -41,7 +41,7 @@ public class Item {
         return this.subtype;
     }
 
-    public final String getRarity() {
+    public final Rarity getRarity() {
         return this.rarity;
     }
 

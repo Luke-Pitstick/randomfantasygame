@@ -1,11 +1,14 @@
 package gameComponents.worldInteractables;
+
 import gameComponents.baseClasses.Item;
+import gameComponents.types.Rarity;
 import gameControllers.ItemCreator;
+import gameComponents.types.Rarity;
 import utilities.RandomNumGen;
 
 public class Chest {
     protected Item[] items;
-    protected String rarity;
+    protected Rarity rarity;
     protected int chestSize;
 
     public Chest() {
@@ -17,7 +20,7 @@ public class Chest {
 
     private static void addItems(Item[] items, int length) {
         for (int i = 0; i < length; i++) {
-            String rarity = ItemCreator.getRandomRarity();
+            Rarity rarity = ItemCreator.getRandomRarity();
 
             Item item = ItemCreator.getRandomItem(rarity);
 

@@ -3,16 +3,17 @@ import gameComponents.items.Weapon;
 import gameComponents.items.Armor;
 import gameComponents.magic.AttackSpell;
 import gameComponents.items.Staff;
+import gameComponents.types.Rarity;
 
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Weapon excalibur = new Weapon("Excalibur", 10000, "A legendary sword of britannic origin", "Sword", "Longsword", "Legendary", 15, 12, 100, true);
-        Armor chainmail = new Armor("Chainmail", 3, 100, false, 50, "chainmail armor", "Chainmail", "Common");
-        Weapon frost = new Weapon("Frost", 105, "A longsword of germanic origin", "Sword", "Longsword", "Common", 8, 6, 100, false);
-        Weapon deathBringer = new Weapon("Death Bringer", 500, "A combination of a sword and shield marked by death.", "Sword and shield", "Shortsword and Shield", "Rare", 10, 10, 100, true);
-        Staff fireBringer = new Staff("Fire Bringer", 100, "A fire staff of germanic origin", "Attack", "Common", 5, 0, 3, 100, "Fire");
+        Weapon excalibur = new Weapon("Excalibur", 10000, "A legendary sword of britannic origin", "Sword", "Longsword", Rarity.LEGENDARY, 15, 12, 100, true);
+        Armor chainmail = new Armor("Chainmail", 3, 100, false, 50, "chainmail armor", "Chainmail", Rarity.COMMON);
+        Weapon frost = new Weapon("Frost", 105, "A longsword of germanic origin", "Sword", "Longsword", Rarity.COMMON, 8, 6, 100, false);
+        Weapon deathBringer = new Weapon("Death Bringer", 500, "A combination of a sword and shield marked by death.", "Sword and shield", "Shortsword and Shield", Rarity.RARE, 10, 10, 100, true);
+        Staff fireBringer = new Staff("Fire Bringer", 100, "A fire staff of germanic origin", "Attack", Rarity.UNCOMMON, 5, 0, 3, 100, "Fire");
 
         Player luke = new Player("Luke", 100, 100, frost, chainmail, 10);
         Player max = new Player("Max", 100, 100, fireBringer, chainmail, 10);

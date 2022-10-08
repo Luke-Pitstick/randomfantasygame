@@ -1,6 +1,7 @@
 package gameComponents.baseClasses;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Inventory {
@@ -8,9 +9,7 @@ public class Inventory {
     private int size;
     
     public Inventory(Item[] initialItems, int size) {
-        for (Item item : initialItems) {
-            this.items.add(item);
-        }
+        this.items.addAll(Arrays.asList(initialItems));
         this.size = size;
     }
 
@@ -33,9 +32,7 @@ public class Inventory {
     }
 
     public void add(Item[] items) {
-        for (Item item: items) {
-            this.items.add(item);
-        }
+        this.items.addAll(Arrays.asList(items));
     }
 
     public void remove(int index) {

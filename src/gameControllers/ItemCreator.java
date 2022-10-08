@@ -5,6 +5,8 @@ import gameComponents.items.SpellBook;
 import gameComponents.items.Staff;
 import gameComponents.items.Weapon;
 import gameComponents.magic.AttackSpell;
+import gameComponents.types.Rarity;
+
 import utilities.RandomNumGen;
 
 public class ItemCreator {
@@ -13,27 +15,27 @@ public class ItemCreator {
         return null;
     }
 
-    public static Weapon createWeapon(String rarity) {
+    public static Weapon createWeapon(Rarity rarity) {
         // TODO
         return null;
     }
 
-    public static Armor createArmor(String rarity) {
+    public static Armor createArmor(Rarity rarity) {
         // TODO
         return null;
     }
 
-    public static AttackSpell createAttackSpell(String rarity) {
+    public static AttackSpell createAttackSpell(Rarity rarity) {
         // TODO
         return null;
     }
 
-    public static Staff createStaff(String rarity) {
+    public static Staff createStaff(Rarity rarity) {
         // TODO
         return null;
     }
 
-    public static SpellBook createSpellBook(String rarity) {
+    public static SpellBook createSpellBook(Rarity rarity) {
         // TODO
         return null;
     }
@@ -52,7 +54,7 @@ public class ItemCreator {
         };
     }
 
-    public static Item getRandomItem(String rarity) {
+    public static Item getRandomItem(Rarity rarity) {
         String itemType = getRandomItemType();
 
         return switch (itemType) {
@@ -64,16 +66,16 @@ public class ItemCreator {
         };
     }
 
-    public static String getRandomRarity() {
+    public static Rarity getRandomRarity() {
         int randomNum = RandomNumGen.randomNum(1, 6);
 
         return switch (randomNum) {
-            case 2 -> "Uncommon";
-            case 3 -> "Rare";
-            case 4 -> "Epic";
-            case 5 -> "Legendary";
-            case 6 -> "Mythical";
-            default -> "Common";
+            case 2 -> Rarity.UNCOMMON;
+            case 3 -> Rarity.RARE;
+            case 4 -> Rarity.EPIC;
+            case 5 -> Rarity.LEGENDARY;
+            case 6 -> Rarity.MYTHIC;
+            default -> Rarity.COMMON;
         };
     }
 }
